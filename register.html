@@ -1,0 +1,141 @@
+{% load static %}
+
+{% include 'header.html' %}
+
+
+
+<section class="contact section-padding">
+    <div   class="container">
+        <div class="row">
+            <center>
+            <div align="center" class="col-lg-6 col-12">
+                <h2 class="mb-4">Student<span>Register</span></h2>
+
+                <form class="contact-form me-lg-5 pe-lg-3" action="addstudent" method="post" role="form">
+                    {% csrf_token %}
+
+                    <div class="form-floating">
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Full name" required>
+
+                        <label for="name">Full name</label>
+                    </div>
+
+                    <div class="form-floating my-4">
+                        <input type="email" name="email" id="email" pattern="[^ @]*@[^ @]*" class="form-control" placeholder="Email address" required>
+
+                        <label for="email">Email address</label>
+                    </div>
+                    
+                    <div class="form-floating my-4">
+                        <input type="text" name="phone" pattern="[0-9]{10}" title='Enter 10 digits'  id="subject"class="form-control" placeholder="Phone" required>
+
+                        <label for="subject">Phone</label>
+                    </div>
+                    <div class="form-floating my-4">
+                        <input type="text" name="city" id="subject"class="form-control" placeholder="City" required>
+
+                        <label for="subject">City</label>
+                    </div>
+                    <div class="form-floating my-4">
+                        <input type="text" name="place" id="subject"class="form-control" placeholder="Place" required>
+
+                        <label for="subject">Place</label>
+                    </div>
+                    <div class="form-floating my-4">
+                        <input type="text" name="address" id="subject"class="form-control" placeholder="Address" required>
+
+                        <label for="subject">Address</label>
+                    </div>
+                    
+                    <div class="form-floating my-4">
+                        <select id="disability-status" class="form-control" name="disability_status" required>
+                            <option value="">Do you have a disability?</option>
+                            <option value="no">No</option>
+                            <option value="yes">Yes</option>
+                        </select>
+                        <label for="disability-status">Disability Status</label>
+                    </div>
+
+                    <!-- Initially hidden sections -->
+                    <div id="conditional-sections" style="display: none;">
+                        <!-- Student Type Field -->
+                        <div class="form-floating my-4">
+                            <select id="st_type" class="form-control" name="st_type" required>
+                                <option value="">Select Student Type</option>
+                                <option value="Deaf">Deaf</option>
+                                <option value="Dumb">Dumb</option>
+                                <option value="Blind">Blind</option>
+                            </select>
+                            <label for="st_type">Student Type</label>
+                        </div>
+
+                        <!-- Disability Certificate Upload Field -->
+                        <div class="form-floating my-4">
+                            <input type="file" name="certification" id="certification" class="form-control">
+                            <label for="certification">Disability Certificate</label>
+                        </div>
+                    </div>
+                        <div class="form-floating my-4">
+                            <input type="password" name="password" id="password"class="form-control" placeholder="Password" required>
+    
+                        <label for="subject">Password</label>
+                        <div id="password-validation-message" style="color: red;"></div>
+
+                        <!-- Heading for the certification upload field -->
+            
+                        <script>
+                            document.getElementById('disability-status').addEventListener('change', function() {
+                                var conditionalSections = document.getElementById('conditional-sections');
+                                var certificationInput = document.getElementById('certification');
+                                var studentTypeSelect = document.getElementById('st_type');
+
+                                // Display or hide the conditional sections based on selection
+                                if (this.value === 'yes') {
+                                    conditionalSections.style.display = 'block';
+                                    certificationInput.setAttribute('required', true);
+                                    studentTypeSelect.setAttribute('required', true);
+                                } else {
+                                    conditionalSections.style.display = 'none';
+                                    certificationInput.removeAttribute('required');
+                                    studentTypeSelect.removeAttribute('required');
+                                }
+                            });
+
+
+                            function validatePassword() {
+                                var passwordInput = document.getElementById('password');
+                                var passwordValidationMessage = document.getElementById('password-validation-message');
+                        
+                                var passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/;
+                        
+                                if (!passwordRegex.test(passwordInput.value)) {
+                                    passwordValidationMessage.textContent = "Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one digit.";
+                                    passwordInput.setCustomValidity("Invalid password");
+                                } else {
+                                    passwordValidationMessage.textContent = "";
+                                    passwordInput.setCustomValidity("");
+                                }
+                            }
+                        
+                            
+
+                        </script>
+                      
+                    </div>
+
+                   
+
+                    <div class="col-lg-5 col-6">
+                        <button type="submit" class="form-control">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </center>
+            
+
+        </div>
+    </div>
+</section>
+</main>
+
+{% include 'footer.html' %}
