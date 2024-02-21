@@ -39,7 +39,7 @@
             <th>Course Name</th>
             <th>Amount</th>
             <th>card name</th>
-            <th>card no</th>
+            {% comment %} <th>card no</th> {% endcomment %}
             <th>Study Material</th>
            
           
@@ -52,7 +52,7 @@
                 <td>{{ assigned_courses.course }}</td>
                 <td>{{ assigned_courses.amount }}</td>
                 <td>{{ assigned_courses.card_name }}</td>
-                <td>{{ assigned_courses.card_no }}</td>
+                {% comment %} <td>{{ assigned_courses.card_no }}</td> {% endcomment %}
                 <td><a href="add_stdy_mtr/{{assigned_courses.sid}}" class="btn btn-danger">Give Study Material</a></td>
               
               
